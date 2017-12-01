@@ -4,6 +4,9 @@ from django.contrib.auth.models import User
 
 from datetime import date
 
+
+from django.urls import reverse #Used to generate URLs by reversing the URL patterns
+
 @property
 def is_overdue(self):
     if self.due_back and date.today() > self.due_back:
@@ -23,7 +26,12 @@ class Genre(models.Model):
         """
         return self.name
 
-from django.urls import reverse #Used to generate URLs by reversing the URL patterns
+class Language(models.Model):
+    name = models.CharField(max_length=200, help_text="Enter a the book's natural language (e.g English, French, Japanese)")
+
+    def __str__(self):
+        return self.name
+
 
 class Book(models.Model):
     """
